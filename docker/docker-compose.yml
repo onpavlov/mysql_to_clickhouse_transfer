@@ -4,11 +4,11 @@ services:
 
     app:
         build:
-            context: ./golang
-            dockerfile: Dockerfile
+            context: .
+            dockerfile: ./golang/Dockerfile
             target: dev
         volumes:
-            - ./app:/app
+            - ../app:/app
         depends_on:
             - mysql
             - rabbitmq
@@ -27,15 +27,21 @@ services:
             - 9000
             - 9009
         volumes:
-            - ./data:/var/lib/clickhouse
-            - ./log/clickhouse-server/:/var/log/clickhouse-server/
+            - ./clickhouse/data:/var/lib/clickhouse
+            - ./clickhouse/log/clickhouse-server/:/var/log/clickhouse-server/
+            - ./clickhouse/config/:/etc/clickhouse-server/
 
     rabbitmq:
-        image: rabbitmq
+        build:
+            context: .
+            dockerfile: ./rabbitmq/Dockerfile
+            target: dev
         ports:
-            - "5672:5672"
-            - "15672:15672"
-            - "15671:15671"
+            - 5671:5671
+            - 5672:5672
+            - 15672:15672
+            - 15671:15671
+            - 25672:25672
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=guest

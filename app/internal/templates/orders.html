@@ -1,0 +1,30 @@
+<h1>{{.PageTitle}}</h1>
+
+<table>
+    <tr>
+        <th>OrderId</th>
+        <th>MindboxOrderId</th>
+        <th>CreatedAt</th>
+        <!-- <th>StatusName</th> -->
+        <!-- <th>StatusUpdatedAt</th> -->
+        <th>UserId</th>
+        <!-- <th>PriceTotal</th> -->
+        <!-- <th>PriceDelivery</th> -->
+        <!-- <th>Store</th> -->
+        <!-- <th>Platform</th> -->
+    </tr>
+    {{range .Orders}}
+        <tr>
+            <td>{{.OrderId}}</td>
+            <td>{{.MindboxOrderId}}</td>
+            <td>{{.CreatedAt}}</td>
+            <!-- <td>{{.Status.Name}}</td> -->
+            <!-- <td>{{.Status.UpdatedAt}}</td> -->
+            <td>{{.UserId}}</td>
+            <!-- <td>{{.Amount.Total}}</td> -->
+            <!-- <td>{{.Amount.Delivery}}</td> -->
+            <!-- <td>{{.Store}}</td> -->
+            <!-- <td>{{.Platform}}</td> -->
+        </tr>
+    {{end}}
+</table>
